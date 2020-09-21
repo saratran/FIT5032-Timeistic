@@ -101,7 +101,6 @@ E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Pr
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\Microsoft.Owin.Security.OAuth.xml
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.csprojAssemblyReference.cache
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.csproj.CoreCompileInputs.cache
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.csproj.CopyComplete
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.dll
@@ -109,3 +108,6 @@ E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Pr
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.Migrations.InitialCreate.resources
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.csproj.GenerateResource.cache
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.Migrations.AddTask.resources
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.Migrations.TaskRename.resources
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.Migrations.TaskPriority.resources
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.csprojAssemblyReference.cache

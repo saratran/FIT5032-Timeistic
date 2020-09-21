@@ -170,7 +170,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\TasksController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
+    <Compile Include="Controllers\TrackerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -182,9 +183,17 @@
     <Compile Include="Migrations\202009131055200_AddTask.Designer.cs">
       <DependentUpon>202009131055200_AddTask.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009211041350_TaskRename.cs" />
+    <Compile Include="Migrations\202009211041350_TaskRename.Designer.cs">
+      <DependentUpon>202009211041350_TaskRename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009211103321_TaskPriority.cs" />
+    <Compile Include="Migrations\202009211103321_TaskPriority.Designer.cs">
+      <DependentUpon>202009211103321_TaskPriority.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Task.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -246,15 +255,15 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Tasks\Create.cshtml" />
-    <Content Include="Views\Tasks\Delete.cshtml" />
-    <Content Include="Views\Tasks\Details.cshtml" />
-    <Content Include="Views\Tasks\Edit.cshtml" />
-    <Content Include="Views\Tasks\Index.cshtml" />
+    <Content Include="Views\Items\Create.cshtml" />
+    <Content Include="Views\Items\Delete.cshtml" />
+    <Content Include="Views\Items\Details.cshtml" />
+    <Content Include="Views\Items\Edit.cshtml" />
+    <Content Include="Views\Items\Index.cshtml" />
+    <Content Include="Views\Tracker\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DAL\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -275,6 +284,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009131055200_AddTask.resx">
       <DependentUpon>202009131055200_AddTask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009211041350_TaskRename.resx">
+      <DependentUpon>202009211041350_TaskRename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009211103321_TaskPriority.resx">
+      <DependentUpon>202009211103321_TaskPriority.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

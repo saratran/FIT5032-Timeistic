@@ -12,30 +12,36 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FIT5032Project.Controllers
 {
-    public class TasksController : Controller
+    [Authorize]
+    public class ItemsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         protected UserManager<ApplicationUser> UserManager { get; set; }
 
-        public TasksController()
+        public ItemsController()
         {
             this.UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(this.db));
         }
 
         // GET: Tasks
+        [Authorize]
         public ActionResult Index()
         {
-            return View(db.Tasks.ToList());
+            var userId = User.Identity.GetUserId();
+            var items = db.Items.Where(i => i.User.Id == userId).ToList();
+
+            return View(items);
         }
 
         // GET: Tasks/Details/5
+        [Authorize]
         public ActionResult Details(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Task task = db.Tasks.Find(id);
+            Item task = db.Items.Find(id);
             if (task == null)
             {
                 return HttpNotFound();
@@ -44,6 +50,7 @@ namespace FIT5032Project.Controllers
         }
 
         // GET: Tasks/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -54,14 +61,16 @@ namespace FIT5032Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async System.Threading.Tasks.Task<ActionResult> Create([Bind(Include = "Id,Name,Priority")] Task task)
+        [Authorize]
+        public async System.Threading.Tasks.Task<ActionResult> Create([Bind(Include = "Id,Name,Priority")] Item task)
         {
-            // TODO: check if login
+            task.Id = Guid.NewGuid();
+            task.User = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            ModelState.Clear();
+            TryValidateModel(task);
             if (ModelState.IsValid)
-            {
-                task.Id = Guid.NewGuid();
-                task.User = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                db.Tasks.Add(task);
+            { 
+                db.Items.Add(task);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -76,7 +85,7 @@ namespace FIT5032Project.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Task task = db.Tasks.Find(id);
+            Item task = db.Items.Find(id);
             if (task == null)
             {
                 return HttpNotFound();
@@ -89,7 +98,7 @@ namespace FIT5032Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Priority")] Task task)
+        public ActionResult Edit([Bind(Include = "Id,Name,Priority")] Item task)
         {
             if (ModelState.IsValid)
             {
@@ -107,7 +116,7 @@ namespace FIT5032Project.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Task task = db.Tasks.Find(id);
+            Item task = db.Items.Find(id);
             if (task == null)
             {
                 return HttpNotFound();
@@ -120,8 +129,8 @@ namespace FIT5032Project.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Task task = db.Tasks.Find(id);
-            db.Tasks.Remove(task);
+            Item task = db.Items.Find(id);
+            db.Items.Remove(task);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
