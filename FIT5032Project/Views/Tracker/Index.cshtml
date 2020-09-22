@@ -6,34 +6,45 @@
 }
 
 <h2>Tracker</h2>
-
-@using (Html.BeginForm("Create","Tracker",FormMethod.Post))
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            One of three columns
+        </div>
+        <div class="col">
+            One of three columns
+        </div>
+        <div class="col">
+            One of three columns
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm("Create", "Tracker", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Create</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.NewItem.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NewItem.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NewItem.Name, "", new { @class = "text-danger" })
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-group">
+                    @Html.EditorFor(model => model.NewItem.Name, new { htmlAttributes = new { placeholder = "What did you work on?", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NewItem.Name, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.NewItem.Priority, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NewItem.Priority, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NewItem.Priority, "", new { @class = "text-danger" })
+            <div class="col-sm">
+                <div class="form-group">
+                    @Html.DropDownListFor(model => model.NewItem.Priority, new SelectList(Enumerable.Range(1, 5)), "Priority")
+                    @Html.ValidationMessageFor(model => model.NewItem.Priority, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-sm">
+                <div class="form-group">
+                    <input type="submit" value="Add" class="btn btn-default" />
+                </div>
             </div>
         </div>
     </div>
@@ -73,3 +84,4 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
