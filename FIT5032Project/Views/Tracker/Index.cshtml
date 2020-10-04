@@ -1,4 +1,4 @@
-﻿@model FIT5032Project.Models.ItemTracker
+﻿@model FIT5032Project.Models.TrackerViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -6,45 +6,26 @@
 }
 
 <h2>Tracker</h2>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            One of three columns
-        </div>
-        <div class="col">
-            One of three columns
-        </div>
-        <div class="col">
-            One of three columns
-        </div>
-    </div>
-</div>
 @using (Html.BeginForm("Create", "Tracker", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="container">
-        <div class="row">
+    <div class="container border p-1">
+        <div class="row my-auto">
             <div class="col-sm">
-                <div class="form-group">
                     @Html.EditorFor(model => model.NewItem.Name, new { htmlAttributes = new { placeholder = "What did you work on?", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.NewItem.Name, "", new { @class = "text-danger" })
-                </div>
             </div>
 
-            <div class="col-sm">
-                <div class="form-group">
+            <div class="col-sm my-auto">
                     @Html.DropDownListFor(model => model.NewItem.Priority, new SelectList(Enumerable.Range(1, 5)), "Priority")
                     @Html.ValidationMessageFor(model => model.NewItem.Priority, "", new { @class = "text-danger" })
-                </div>
             </div>
 
-            <div class="col-sm">
-                <div class="form-group">
-                    <input type="submit" value="Add" class="btn btn-default" />
-                </div>
+            <div class="col-sm my-auto mx-1">
+                <input class="btn btn-primary float-right" type="submit" value="Add">
             </div>
         </div>
     </div>

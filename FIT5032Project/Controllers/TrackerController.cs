@@ -26,7 +26,7 @@ namespace FIT5032Project.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var model = new ItemTracker();
+            var model = new TrackerViewModel();
             var userId = User.Identity.GetUserId();
             model.Items = db.Items.Where(i => i.User.Id == userId).ToList();
             return View(model);
@@ -38,7 +38,7 @@ namespace FIT5032Project.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<ActionResult> Create([Bind(Include = "NewItem, Items")] ItemTracker model)
+        public async Task<ActionResult> Create([Bind(Include = "NewItem, Items")] TrackerViewModel model)
         {
             var item = model.NewItem;
             /*var item = model.NewItem;*/
