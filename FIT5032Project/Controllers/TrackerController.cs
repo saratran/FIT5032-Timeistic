@@ -59,6 +59,7 @@ namespace FIT5032Project.Controllers
         }
 
         // GET: Item/Details/5
+        [Authorize]
         public ActionResult Details(Guid? id)
         {
             if (id == null)
@@ -74,6 +75,7 @@ namespace FIT5032Project.Controllers
         }
 
         // GET: Item/Edit/5
+        [Authorize]
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -93,6 +95,7 @@ namespace FIT5032Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "Id,Name,Priority,StartTime,EndTime,Date")] Item item)
         {
             if (ModelState.IsValid)
@@ -105,6 +108,7 @@ namespace FIT5032Project.Controllers
         }
 
         // GET: Item/Delete/5
+        [Authorize]
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
@@ -122,6 +126,7 @@ namespace FIT5032Project.Controllers
         // POST: Item/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(Guid id)
         {
             Item item = db.Items.Find(id);
