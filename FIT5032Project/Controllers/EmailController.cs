@@ -2,7 +2,10 @@
 using FIT5032Project.Utils;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -17,7 +20,7 @@ namespace FIT5032Project.Controllers
         }
 
         [HttpPost]
-        public async System.Threading.Tasks.Task<ActionResult> Send_Email(SendEmailViewModel model)
+        public async Task<ActionResult> Send_Email(SendEmailViewModel model, HttpPostedFileBase fileUploader)
         {
             if (ModelState.IsValid)
             {
@@ -26,9 +29,19 @@ namespace FIT5032Project.Controllers
                     String toEmail = model.ToEmail;
                     String subject = model.Subject;
                     String contents = model.Contents;
-
                     EmailSender es = new EmailSender();
-                    await es.SendAsync(toEmail, subject, contents);
+                    if (fileUploader != null)
+                    {
+                        string filename = Path.GetFileName(fileUploader.FileName);
+                        System.Diagnostics.Debug.WriteLine(filename);
+                        var attachment = new Attachment(fileUploader.InputStream, filename);
+                        
+                        await es.SendAsync(toEmail, subject, contents, fileUploader);
+                    } else
+                    {
+                        await es.SendAsync(toEmail, subject, contents);
+                    }
+
 
                     ViewBag.Result = "Email has been sent.";
 
