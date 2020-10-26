@@ -31,5 +31,6 @@ namespace FIT5032Project.Models
             return new ApplicationDbContext();
         }
 
+        public System.Data.Entity.DbSet<FIT5032Project.Models.Location> Locations { get; set; }
     }
 }

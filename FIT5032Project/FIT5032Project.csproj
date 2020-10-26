@@ -182,6 +182,7 @@
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
+    <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TrackerController.cs" />
     <Compile Include="Global.asax.cs">
@@ -219,10 +220,15 @@
     <Compile Include="Migrations\202010261104241_item-on-cascade-delete.Designer.cs">
       <DependentUpon>202010261104241_item-on-cascade-delete.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010261339357_location.cs" />
+    <Compile Include="Migrations\202010261339357_location.Designer.cs">
+      <DependentUpon>202010261339357_location.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Location.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SendEmailViewModel.cs" />
     <Compile Include="Models\TrackerViewModels.cs" />
@@ -502,6 +508,11 @@
     <Content Include="Views\Email\Index.cshtml" />
     <Content Include="Views\Admin\ManageUsers.cshtml" />
     <Content Include="Views\Admin\DeleteUser.cshtml" />
+    <Content Include="Views\Locations\Create.cshtml" />
+    <Content Include="Views\Locations\Delete.cshtml" />
+    <Content Include="Views\Locations\Details.cshtml" />
+    <Content Include="Views\Locations\Edit.cshtml" />
+    <Content Include="Views\Locations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -533,6 +544,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010261104241_item-on-cascade-delete.resx">
       <DependentUpon>202010261104241_item-on-cascade-delete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010261339357_location.resx">
+      <DependentUpon>202010261339357_location.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
