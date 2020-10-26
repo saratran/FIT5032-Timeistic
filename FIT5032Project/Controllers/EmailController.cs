@@ -16,6 +16,10 @@ namespace FIT5032Project.Controllers
         // GET: Email
         public ActionResult Index()
         {
+            if(TempData["result"] != null)
+            {
+                ViewBag.Result = TempData["result"].ToString();
+            }
             return View(new SendEmailViewModel());
         }
 
@@ -32,21 +36,15 @@ namespace FIT5032Project.Controllers
                     EmailSender es = new EmailSender();
                     if (fileUploader != null)
                     {
-                        string filename = Path.GetFileName(fileUploader.FileName);
-                        System.Diagnostics.Debug.WriteLine(filename);
-                        var attachment = new Attachment(fileUploader.InputStream, filename);
-                        
                         await es.SendAsync(toEmail, subject, contents, fileUploader);
-                    } else
+                    }
+                    else
                     {
                         await es.SendAsync(toEmail, subject, contents);
                     }
-
-
-                    ViewBag.Result = "Email has been sent.";
-
                     ModelState.Clear();
 
+                    TempData["result"] = "Email has been sent.";
                     return RedirectToAction("Index");
                 }
                 catch

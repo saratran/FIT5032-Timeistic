@@ -21,10 +21,17 @@
                 <ul class="nav navbar-nav mr-auto">
                     @if (Request.IsAuthenticated)
                     {
-                        @*TODO: change action/create controllers*@
-                        <li class="nav-item">@Html.ActionLink("Tracker", "Index", "Tracker", null, new { @class = "nav-link" })</li>
-                        <li class="nav-item">@Html.ActionLink("Report", "About", "Home", null, new { @class = "nav-link" })</li>
-                        <li class="nav-item">@Html.ActionLink("Team", "Contact", "Home", null, new { @class = "nav-link" })</li>
+
+                        if (User.IsInRole("User"))
+                        {
+                            <li class="nav-item">@Html.ActionLink("Tracker", "Index", "Tracker", null, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Report", "About", "Home", null, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Team", "Contact", "Home", null, new { @class = "nav-link" })</li>
+                        }
+                        else if (User.IsInRole("Administrator"))
+                        {
+                            <li class="nav-item">@Html.ActionLink("Manage User", "Index", "Tracker", null, new { @class = "nav-link" })</li>
+                        }
                     }
                     else
                     {
