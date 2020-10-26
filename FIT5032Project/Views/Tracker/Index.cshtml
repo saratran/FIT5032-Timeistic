@@ -24,8 +24,8 @@
                 @Html.ValidationMessageFor(model => model.NewItem.Priority, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm my-auto">
-                    @Html.EditorFor(model => model.NewItem.StartTime, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.NewItem.StartTime, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.NewItem.StartTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NewItem.StartTime, "", new { @class = "text-danger" })
             </div>
 
 
@@ -97,5 +97,6 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"></script>
 }
 
