@@ -14,21 +14,26 @@
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
+            <th>
+                Action
+            </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
+            if (item.UserName != User.Identity.Name)
+            {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
 
-                @*<td>
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>*@
+                <td>
+                    @Html.ActionLink("Delete", "DeleteUser", new { id = item.Id })
+                </td>
             </tr>
+            }
         }
     </tbody>
 
@@ -38,7 +43,12 @@
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#user_list').DataTable();
+            $('#user_list').DataTable({
+                "columnDefs": [
+                    { "searchable": false, "targets": [1] },
+                    { "orderable": false, "targets": [1] }
+                ]
+            })
         });
     </script>
 }

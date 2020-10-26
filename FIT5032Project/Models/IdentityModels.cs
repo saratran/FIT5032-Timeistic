@@ -31,6 +31,5 @@ namespace FIT5032Project.Models
             return new ApplicationDbContext();
         }
 
-        //public System.Data.Entity.DbSet<FIT5032Project.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
