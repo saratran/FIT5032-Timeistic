@@ -1,0 +1,178 @@
+﻿@model IEnumerable<FIT5032Project.Models.Item>
+
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Report</h2>
+
+<div class="card">
+    <div id="totalTime" class="card-body">
+
+    </div>
+</div>
+<div class="chart-container col-md-6" style="position: relative;">
+    <canvas id="myChart" width="400" height="400"></canvas>
+</div>
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Priority)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Priority)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+            </tr>
+        }
+
+    </table>*@
+
+@section Styles{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />
+}
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+    <script>
+        class Report {
+            constructor(items) {
+                this.items = items;
+            }
+
+            totalTime() {
+                let total = 0;  // in hours
+                for (let i = 0; i < this.items.length; i++) {
+                    let item = this.items[i];
+                    let hourDiff = item.EndTime.getHours() - item.StartTime.getHours();
+                    if (hourDiff < 0) {
+                        hourDiff = 24 + hourDiff;
+                    }
+                    total += hourDiff;
+                }
+                return total;
+            }
+
+            totalPerPriority() {
+                let total = {};
+                for (let i = 1; i <= 5; i++) {
+                    total[i]={
+                        hours: 0,
+                        count: 0
+                    };
+                }
+
+                for (let i = 0; i < this.items.length; i++) {
+                    let item = this.items[i];
+                    let hourDiff = (item.EndTime.getHours() - item.StartTime.getHours()) + (item.EndTime.getMinutes() - item.StartTime.getMinutes())/60;
+                    if (hourDiff < 0) {
+                        hourDiff = 24 + hourDiff;
+                    }
+                    total[item.Priority].hours += hourDiff;
+                    total[item.Priority].count += 1;
+                }
+
+                return total;
+            }
+
+
+        }
+        function getDateFromAspNetFormat(date) {
+            const re = /-?\d+/;
+            const m = re.exec(date);
+            return parseInt(m[0], 10);
+        };
+
+        var model = @Html.Raw(Json.Encode(Model));
+
+        for (let i = 0; i < model.length; i++) {
+            model[i].EndTime = new Date(getDateFromAspNetFormat(model[i].EndTime));
+            model[i].StartTime = new Date(getDateFromAspNetFormat(model[i].StartTime));
+            model[i].Date = new Date(getDateFromAspNetFormat(model[i].Date));
+        }
+
+        let report = new Report(model);
+        @*console.log(report.totalTime());
+        console.log(report.totalPerPriority());*@
+
+        $('#totalTime').text("Total time spent: " + report.totalTime() + " hours");
+        var ctx = $('#myChart');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [1, 2, 3, 4, 5],
+                datasets: [{
+                    label: '# Hours',
+                    data: Object.values(report.totalPerPriority()).map(y => y.hours),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Hour"
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: "Priority"
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+}

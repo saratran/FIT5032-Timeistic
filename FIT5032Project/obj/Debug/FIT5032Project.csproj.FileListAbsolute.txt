@@ -113,3 +113,4 @@ E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Pr
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.csproj.GenerateResource.cache
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.Migrations.itemlocation.resources
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.Migrations.location.resources
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.csprojAssemblyReference.cache
