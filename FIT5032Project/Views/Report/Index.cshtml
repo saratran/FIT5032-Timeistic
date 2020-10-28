@@ -12,8 +12,24 @@
 
     </div>
 </div>
-<div class="chart-container col-md-6" style="position: relative;">
-    <canvas id="myChart" width="400" height="400"></canvas>
+<div class="container">
+    <div class="row my-auto">
+        <select class="col-md-4" id="chartType" onchange="selectChartType(this)">
+            <option value="" style="display:none;"></option>
+            <option value="tasks-priority">#tasks per priority</option>
+            <option value="hours-priority">#hours per priority</option>
+        </select>
+    </div>
+    <div class="row my-auto">
+        <div class="chart-container col-md-6" style="position: relative;">
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+
+        <div class="chart-container col-md-4" style="position: relative;">
+            <canvas id="myPieChart" width="400" height="400"></canvas>
+        </div>
+
+    </div>
 </div>
 
 @*<table class="table">
@@ -120,59 +136,107 @@
             model[i].StartTime = new Date(getDateFromAspNetFormat(model[i].StartTime));
             model[i].Date = new Date(getDateFromAspNetFormat(model[i].Date));
         }
-
         let report = new Report(model);
-        @*console.log(report.totalTime());
-        console.log(report.totalPerPriority());*@
-
         $('#totalTime').text("Total time spent: " + report.totalTime() + " hours");
-        var ctx = $('#myChart');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: [1, 2, 3, 4, 5],
-                datasets: [{
-                    label: '# Hours',
-                    data: Object.values(report.totalPerPriority()).map(y => y.hours),
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        },
-                        scaleLabel: {
-                            display: true,
-                            labelString: "Hour"
-                        }
-                    }],
-                    xAxes: [{
-                        scaleLabel: {
-                            display: true,
-                            labelString: "Priority"
-                        }
+
+        function createCharts(ctx, data, labels, xlabel, ylabel) {
+            let myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '# Hours',
+                        data: data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
                     }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: ylabel
+                            }
+                        }],
+                        xAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: xlabel
+                            }
+                        }]
+                    }
+                }
+            });
+
+            var pieChartCtx = $('#myPieChart');
+            var myPieChart = new Chart(pieChartCtx, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ]
+                    }],
+                    labels: labels
+                }
+            });
+        }
+
+        function selectChartType(selectObject) {
+            let value = selectObject.value;
+            switch (value) {
+                case "tasks-priority": {
+                    let data = Object.values(report.totalPerPriority()).map(y => y.count);
+                    let labels = [1, 2, 3, 4, 5];
+                    let xlabel = "Priority";
+                    let ylabel = "#Task";
+                    var ctx = $('#myChart');
+                    createCharts(ctx, data, labels, xlabel, ylabel);
+                    break;
+                }
+
+                case "hours-priority": {
+                    let data = Object.values(report.totalPerPriority()).map(y => y.hours);
+                    let labels = [1, 2, 3, 4, 5];
+                    let xlabel = "Priority";
+                    let ylabel = "Hour";
+                    var ctx = $('#myChart');
+                    createCharts(ctx, data, labels, xlabel, ylabel);
+                    break;
                 }
             }
-        });
+        }
     </script>
 
 }
