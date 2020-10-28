@@ -196,6 +196,10 @@
     <Compile Include="Migrations\202010280241374_item-location.Designer.cs">
       <DependentUpon>202010280241374_item-location.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010280403467_location.cs" />
+    <Compile Include="Migrations\202010280403467_location.Designer.cs">
+      <DependentUpon>202010280403467_location.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Item.cs" />
@@ -230,6 +234,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\8262-200.png" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -503,6 +508,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010280241374_item-location.resx">
       <DependentUpon>202010280241374_item-location.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010280403467_location.resx">
+      <DependentUpon>202010280403467_location.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -10,15 +10,15 @@ namespace FIT5032Project.Models
     {
         public int Id { get; set; }
 
-        [Required]
         public string Name { get; set; }
 
-        [Required]
         public string Description { get; set; }
 
+        [Required]
         [Column(TypeName = "numeric")]
         public decimal Latitude { get; set; }
 
+        [Required]
         [Column(TypeName = "numeric")]
         public decimal Longitude { get; set; }
     }

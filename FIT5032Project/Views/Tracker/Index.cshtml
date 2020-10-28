@@ -6,6 +6,7 @@
 }
 
 <h2>Tracker</h2>
+
 @using (Html.BeginForm("Create", "Tracker", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -14,34 +15,51 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="container border p-1">
         <div class="row my-auto">
-            <div class="col-sm-4">
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.NewItem.Name, new { htmlAttributes = new { placeholder = "What did you work on?", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NewItem.Name, "", new { @class = "text-danger" })
             </div>
 
-            <div class="col-sm my-auto">
+            <div class="col-md-1 my-auto">
                 @Html.DropDownListFor(model => model.NewItem.Priority, new SelectList(Enumerable.Range(1, 5)), "Priority")
                 @Html.ValidationMessageFor(model => model.NewItem.Priority, "", new { @class = "text-danger" })
             </div>
-            <div class="col-sm my-auto">
+            <div class="col-md-2 my-auto">
                 @Html.EditorFor(model => model.NewItem.StartTime, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NewItem.StartTime, "", new { @class = "text-danger" })
             </div>
 
 
-            <div class="col-sm my-auto">
+            <div class="col-md-2 my-auto">
                 @Html.EditorFor(model => model.NewItem.EndTime, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NewItem.EndTime, "", new { @class = "text-danger" })
             </div>
 
-            <div class="col-sm my-auto">
+            <div class="col-md-2 my-auto">
                 @Html.EditorFor(model => model.NewItem.Date, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NewItem.Date, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-1 my-auto">
+                <button id="mapBtn" type="button" class="btn"><img src="~/Images/8262-200.png" style="width: 30px; height: 30px;" /></button>
             </div>
 
             <div class="col-sm my-auto mx-1">
                 <input class="btn btn-primary float-right" type="submit" value="Add">
             </div>
+        </div>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+                       <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                @Html.EditorFor(model => model.NewItem.Location.Latitude, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.NewItem.Location.Longitude, new { htmlAttributes = new { @class = "form-control" } })
+                <section class="map_box_container">
+                    <div id='map' style="width:100%; height:100%;"></div>
+                </section>
+
+            </div>
+
         </div>
     </div>
 }
@@ -94,9 +112,140 @@
 
 </table>
 
+@section Styles{
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            height:80%;
+        }
+
+        @*#map {
+            height: 100%;
+            width: 100%;
+        }*@
+
+        .map_box_container {
+            position: relative;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+    </style>
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css" />
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic2FyYXRyYW4iLCJhIjoiY2tncWxlaTEwMGhvNTJycjNucHpyMzd5YSJ9.UIm1eziEsGQj5mv9-uLNMQ';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+            center: [-74.5, 40], // starting position [lng, lat]
+            zoom: 9 // starting zoom
+        });
+
+        map.on('load', function () {
+            map.resize();
+        });
+
+        var geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl,
+            marker: false
+        })
+        map.addControl(geocoder);
+
+        let marker = new mapboxgl.Marker();
+
+        geocoder.on('result', function (e) {
+            console.log(e.result.center)
+            marker.setLngLat(e.result.center);
+            marker.addTo(map);
+            $("#NewItem_Location_Latitude").val(e.result.center[1]);
+            $("#NewItem_Location_Longitude").val(e.result.center[0]);
+        })
+
+        map.on('click', function (e) {
+            console.log(e.lngLat);
+            marker.setLngLat(e.lngLat);
+            marker.addTo(map);
+            $("#NewItem_Location_Latitude").val(e.lngLat.lat);
+            $("#NewItem_Location_Longitude").val(e.lngLat.lng);
+        })
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("mapBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+            map.resize();
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+
+    </script>
 }
 
