@@ -188,41 +188,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202009130840562_InitialCreate.cs" />
-    <Compile Include="Migrations\202009130840562_InitialCreate.Designer.cs">
-      <DependentUpon>202009130840562_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202010280241103_MyBaseline.cs" />
+    <Compile Include="Migrations\202010280241103_MyBaseline.Designer.cs">
+      <DependentUpon>202010280241103_MyBaseline.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202009131055200_AddTask.cs" />
-    <Compile Include="Migrations\202009131055200_AddTask.Designer.cs">
-      <DependentUpon>202009131055200_AddTask.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202009211041350_TaskRename.cs" />
-    <Compile Include="Migrations\202009211041350_TaskRename.Designer.cs">
-      <DependentUpon>202009211041350_TaskRename.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202009211103321_TaskPriority.cs" />
-    <Compile Include="Migrations\202009211103321_TaskPriority.Designer.cs">
-      <DependentUpon>202009211103321_TaskPriority.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202009271047530_itemDateTime.cs" />
-    <Compile Include="Migrations\202009271047530_itemDateTime.Designer.cs">
-      <DependentUpon>202009271047530_itemDateTime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202009271054272_itemDateTime1.cs" />
-    <Compile Include="Migrations\202009271054272_itemDateTime1.Designer.cs">
-      <DependentUpon>202009271054272_itemDateTime1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202010120112348_item-date.cs" />
-    <Compile Include="Migrations\202010120112348_item-date.Designer.cs">
-      <DependentUpon>202010120112348_item-date.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202010261104241_item-on-cascade-delete.cs" />
-    <Compile Include="Migrations\202010261104241_item-on-cascade-delete.Designer.cs">
-      <DependentUpon>202010261104241_item-on-cascade-delete.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202010261339357_location.cs" />
-    <Compile Include="Migrations\202010261339357_location.Designer.cs">
-      <DependentUpon>202010261339357_location.cs</DependentUpon>
+    <Compile Include="Migrations\202010280241374_item-location.cs" />
+    <Compile Include="Migrations\202010280241374_item-location.Designer.cs">
+      <DependentUpon>202010280241374_item-location.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -514,46 +486,24 @@
     <Content Include="Views\Locations\Edit.cshtml" />
     <Content Include="Views\Locations\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202009130840562_InitialCreate.resx">
-      <DependentUpon>202009130840562_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202009131055200_AddTask.resx">
-      <DependentUpon>202009131055200_AddTask.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202009211041350_TaskRename.resx">
-      <DependentUpon>202009211041350_TaskRename.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202009211103321_TaskPriority.resx">
-      <DependentUpon>202009211103321_TaskPriority.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202009271047530_itemDateTime.resx">
-      <DependentUpon>202009271047530_itemDateTime.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202009271054272_itemDateTime1.resx">
-      <DependentUpon>202009271054272_itemDateTime1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010120112348_item-date.resx">
-      <DependentUpon>202010120112348_item-date.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010261104241_item-on-cascade-delete.resx">
-      <DependentUpon>202010261104241_item-on-cascade-delete.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010261339357_location.resx">
-      <DependentUpon>202010261339357_location.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202010280241103_MyBaseline.resx">
+      <DependentUpon>202010280241103_MyBaseline.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010280241374_item-location.resx">
+      <DependentUpon>202010280241374_item-location.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

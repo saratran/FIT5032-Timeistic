@@ -7,13 +7,13 @@ namespace FIT5032Project.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class TaskRename : IMigrationMetadata
+    public sealed partial class itemlocation : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(TaskRename));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(itemlocation));
         
         string IMigrationMetadata.Id
         {
-            get { return "202009211041350_TaskRename"; }
+            get { return "202010280241374_item-location"; }
         }
         
         string IMigrationMetadata.Source

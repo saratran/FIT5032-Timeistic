@@ -36,6 +36,8 @@ namespace FIT5032Project.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Date { get; set; }
 
+        public virtual Location Location { get; set; }
+
         [Required]
         public virtual ApplicationUser User { get; set; }
     }

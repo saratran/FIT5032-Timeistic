@@ -7,13 +7,13 @@ namespace FIT5032Project.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class itemoncascadedelete : IMigrationMetadata
+    public sealed partial class MyBaseline : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(itemoncascadedelete));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(MyBaseline));
         
         string IMigrationMetadata.Id
         {
-            get { return "202010261104241_item-on-cascade-delete"; }
+            get { return "202010280241103_MyBaseline"; }
         }
         
         string IMigrationMetadata.Source
