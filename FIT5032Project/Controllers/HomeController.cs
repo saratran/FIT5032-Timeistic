@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FIT5032Project.Utils;
 
 namespace FIT5032Project.Controllers
 {
@@ -11,6 +12,8 @@ namespace FIT5032Project.Controllers
     {
         public ActionResult Index()
         {
+            EmailSender es = new EmailSender();
+            es.SendMultipleAsync();
             return View();
         }
 

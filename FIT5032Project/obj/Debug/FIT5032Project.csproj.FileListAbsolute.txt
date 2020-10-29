@@ -114,3 +114,13 @@ E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Pr
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.Migrations.itemlocation.resources
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.Migrations.location.resources
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.csprojAssemblyReference.cache
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\HtmlRenderer.dll
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\HtmlRenderer.PdfSharp.dll
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\PdfSharp.Charting.dll
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\PdfSharp.dll
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\HtmlRenderer.pdb
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\HtmlRenderer.PdfSharp.pdb
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\PdfSharp.xml
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\PdfSharp.Charting.xml
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\de\PdfSharp.resources.dll
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\de\PdfSharp.Charting.resources.dll

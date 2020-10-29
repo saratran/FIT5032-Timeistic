@@ -45,5 +45,30 @@ namespace FIT5032Project.Utils
             var response = await client.SendEmailAsync(msg);
         }
 
+        public async Task SendMultipleAsync()
+        {
+            var client = new SendGridClient("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");
+
+            var from = new EmailAddress("saraut1479@gmail.com", "Timestic");
+            var tos = new List<EmailAddress>
+            {
+                new EmailAddress("uyentran1479@gmail.com", "Example User1"),
+                new EmailAddress("utra0001@student.monash.edu", "Example User2")
+            };
+
+            var subject = "Test Bulk Email";
+            var plainTextContent = "and easy to do anywhere, even with C#";
+            var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
+            var showAllRecipients = false; // Set to true if you want the recipients to see each others email addresses
+
+            var msg = MailHelper.CreateSingleEmailToMultipleRecipients(from,
+                                                                       tos,
+                                                                       subject,
+                                                                       plainTextContent,
+                                                                       htmlContent,
+                                                                       showAllRecipients
+                                                                       );
+            var response = await client.SendEmailAsync(msg);
+        }
     }
 }
