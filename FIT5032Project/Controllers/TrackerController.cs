@@ -13,6 +13,7 @@ using System.Data.Entity;
 
 namespace FIT5032Project.Controllers
 {
+    [Authorize]
     public class TrackerController : Controller
     {
 

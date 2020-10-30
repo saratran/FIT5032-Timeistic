@@ -13,7 +13,7 @@ namespace FIT5032Project.Controllers
         public ActionResult Index()
         {
             EmailSender es = new EmailSender();
-            es.SendMultipleAsync();
+            //es.SendMultipleAsync();
             return View();
         }
 
