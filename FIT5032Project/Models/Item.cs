@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace FIT5032Project.Models
 {
@@ -39,6 +40,7 @@ namespace FIT5032Project.Models
         public virtual Location Location { get; set; }
 
         [Required]
+        [HiddenInput(DisplayValue = false)]
         public virtual ApplicationUser User { get; set; }
     }
 

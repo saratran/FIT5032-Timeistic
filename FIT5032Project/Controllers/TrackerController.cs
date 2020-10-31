@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using System.Threading.Tasks;
 using System.Net;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 
 namespace FIT5032Project.Controllers
 {
@@ -102,11 +103,16 @@ namespace FIT5032Project.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "Id,Name,Priority,StartTime,EndTime,Date")] Item item)
+        public ActionResult Edit([Bind(Include = "Id,Name,Priority,StartTime,EndTime,Date,Location,User")] Item item)
         {
+            var oldItem = db.Items.Find(item.Id);
+            item.User = oldItem.User;
+            ModelState.Clear();
+            TryValidateModel(item);
             if (ModelState.IsValid)
             {
-                db.Entry(item).State = EntityState.Modified;
+                //db.Entry(item).State = EntityState.Modified;
+                db.Set<Item>().AddOrUpdate(item);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
