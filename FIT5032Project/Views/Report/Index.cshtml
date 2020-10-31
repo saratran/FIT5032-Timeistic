@@ -7,9 +7,8 @@
 
 <h2>Report</h2>
 
-<div class="card">
+<div class="card m-3">
     <div id="totalTime" class="card-body">
-
     </div>
 </div>
 <div id="chart-container" class="container">
@@ -28,54 +27,10 @@
         <div class="chart-container col-md-4" style="position: relative;">
             <canvas id="myPieChart" width="400" height="400"></canvas>
         </div>
-
     </div>
+    <button id="pdf" type="button" class="btn btn-primary" onclick="createPdf()">PDF</button>
 </div>
-<button id="pdf" type="button" class="btn btn-primary" onclick="createPdf()">PDF</button>
 
-
-@*<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Priority)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Priority)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-            </tr>
-        }
-
-    </table>*@
 
 @section Styles{
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" />
@@ -143,8 +98,10 @@
         let report = new Report(model);
         $('#totalTime').text("Total time spent: " + report.totalTime() + " hours");
 
+        var myChart;
+        var myPieChart;
         function createCharts(ctx, data, labels, xlabel, ylabel) {
-            let myChart = new Chart(ctx, {
+            myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: labels,
@@ -191,7 +148,7 @@
             });
 
             var pieChartCtx = $('#myPieChart');
-            var myPieChart = new Chart(pieChartCtx, {
+            myPieChart = new Chart(pieChartCtx, {
                 type: 'doughnut',
                 data: {
                     datasets: [{
@@ -218,6 +175,13 @@
         }
 
         function selectChartType(selectObject) {
+            if (myChart) {
+                myChart.destroy();
+            }
+
+            if (myPieChart) {
+                myPieChart.destroy();
+            }
             let value = selectObject.value;
             switch (value) {
                 case "tasks-priority": {

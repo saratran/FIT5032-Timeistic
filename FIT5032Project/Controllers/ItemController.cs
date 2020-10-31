@@ -7,13 +7,20 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FIT5032Project.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FIT5032Project.Controllers
 {
     public class ItemController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        protected UserManager<ApplicationUser> UserManager { get; set; }
 
+        public ItemController()
+        {
+            this.UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(this.db));
+        }
         // GET: Item
         public ActionResult Index()
         {
@@ -46,8 +53,13 @@ namespace FIT5032Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Priority,StartTime,EndTime,Date")] Item item)
+        public async System.Threading.Tasks.Task<ActionResult> Create([Bind(Include = "Id,Name,Priority,StartTime,EndTime,Date")] Item item)
         {
+            /*var item = model.NewItem;*/
+            item.Id = Guid.NewGuid();
+            item.User = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            ModelState.Clear();
+            TryValidateModel(item);
             if (ModelState.IsValid)
             {
                 item.Id = Guid.NewGuid();

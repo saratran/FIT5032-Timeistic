@@ -49,9 +49,14 @@ namespace FIT5032Project.Controllers
             item.User = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             ModelState.Clear();
             TryValidateModel(item);
+            if (item.Location.Latitude == -1000)
+            {
+                item.Location = null;
+            }
 
             if (ModelState.IsValid)
             {
+                //db.Entry(item.Location).State = EntityState.Detached;
                 db.Items.Add(item);
                 db.SaveChanges();
                 return RedirectToAction("Index");
