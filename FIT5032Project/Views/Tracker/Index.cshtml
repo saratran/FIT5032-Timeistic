@@ -91,7 +91,11 @@
                 </th>
             </tr>
         </thead>
+
         <tbody>
+            @{
+                int i = 0;
+            }
             @foreach (var item in Model.Items)
             {
                 <tr>
@@ -111,7 +115,10 @@
                         @Html.DisplayFor(modelItem => item.Date)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Location)
+                        @if (item.Location != null)
+                        {
+                            <button type="button" class="btn" onclick="showMap(@(item.Location.Longitude), @(item.Location.Latitude))"><img src="~/Images/8262-200.png" style="width: 30px; height: 30px;" /></button>
+                        }
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
@@ -119,6 +126,7 @@
                         @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                     </td>
                 </tr>
+                i++;
             }
         </tbody>
 
@@ -234,7 +242,7 @@
         let marker = new mapboxgl.Marker();
 
         geocoder.on('result', function (e) {
-            console.log(e.result.center)
+            @*console.log(e.result.center)*@
             marker.setLngLat(e.result.center);
             marker.addTo(map);
             $("#NewItem_Location_Latitude").val(e.result.center[1]);
@@ -242,7 +250,6 @@
         })
 
         map.on('click', function (e) {
-            console.log(e.lngLat);
             marker.setLngLat(e.lngLat);
             marker.addTo(map);
             $("#NewItem_Location_Latitude").val(e.lngLat.lat);
@@ -250,8 +257,14 @@
         })
 
         var modal = document.getElementById("myModal");
-
-        function showMap() {
+        let taskMarker = new mapboxgl.Marker();
+        function showMap(lng, lat) {
+            if (lat != undefined && lng != undefined) {
+                taskMarker.setLngLat([lng, lat]);
+                taskMarker.addTo(map);
+                map.setCenter([lng, lat]);
+                map.setZoom(13);
+            }
             modal.style.display = "block";
             map.resize();
         }
