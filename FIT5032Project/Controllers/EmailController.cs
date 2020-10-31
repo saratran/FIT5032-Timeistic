@@ -24,23 +24,23 @@ namespace FIT5032Project.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Send_Email(SendEmailViewModel model, HttpPostedFileBase fileUploader)
+        public async Task<ActionResult> SendEmail(SendEmailViewModel model, HttpPostedFileBase fileUploader)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    String toEmail = model.ToEmail;
+                    //String toEmail = model.ToEmail;
                     String subject = model.Subject;
                     String contents = model.Contents;
                     EmailSender es = new EmailSender();
                     if (fileUploader != null)
                     {
-                        await es.SendAsync(toEmail, subject, contents, fileUploader);
+                        //await es.SendAsync(toEmail, subject, contents, fileUploader);
                     }
                     else
                     {
-                        await es.SendAsync(toEmail, subject, contents);
+                        //await es.SendAsync(toEmail, subject, contents);
                     }
                     ModelState.Clear();
 

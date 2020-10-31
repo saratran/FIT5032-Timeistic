@@ -615,6 +615,7 @@
     <Content Include="Views\Map\Edit.cshtml" />
     <Content Include="Views\Map\Index.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\Admin\Email.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

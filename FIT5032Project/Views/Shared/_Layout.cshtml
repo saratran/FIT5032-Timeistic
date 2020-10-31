@@ -31,6 +31,8 @@
                         else if (User.IsInRole("Administrator"))
                         {
                             <li class="nav-item">@Html.ActionLink("Manage Users", "ManageUsers", "Admin", null, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Email", "Email", "Admin", null, new { @class = "nav-link" })</li>
+
                         }
                     }
                     else
