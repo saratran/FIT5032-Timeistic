@@ -10,25 +10,6 @@
 <div id="calendar"></div>
 <div style="display: none">
     <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Priority)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th></th>
-        </tr>
-
         @foreach (var item in Model)
         {
             <tr class="events">
@@ -59,13 +40,10 @@
 </div>
 
 @section Styles{
-    @*<link href="~/Content/fullcalendar.css" rel="stylesheet" />
-        <link href="~/Content/fullcalendar.print.css" rel="stylesheet" />*@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.css">
 }
 
 @section Scripts{
-    @*@Scripts.Render("~/bundles/fullcalendar")*@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
     <script>

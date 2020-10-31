@@ -31,7 +31,7 @@ namespace FIT5032Project.Controllers
         {
             var model = new TrackerViewModel();
             var userId = User.Identity.GetUserId();
-            model.Items = db.Items.Where(i => i.User.Id == userId).ToList();
+            model.Items = db.Items.Where(i => i.User.Id == userId).OrderByDescending(m => m.Date).ThenByDescending(m => m.StartTime).ToList();
             return View(model);
         }
 
