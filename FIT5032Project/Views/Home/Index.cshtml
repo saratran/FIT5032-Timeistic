@@ -2,22 +2,39 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>Timeistic</h1>
-    <p class="lead">Timeistic is a simplistic app that allows you to track your activities through out the day.</p>
+@*<div class="jumbotron jumbotron-image" style="background-image: url('../Images/time_management.jpg'); background-size: cover;">
+        <h1>Timeistic</h1>
+        <p class="lead">Timeistic is a simplistic app that allows you to track your activities through out the day.</p>
+    </div>*@
+
+<div class="jumbotron p-0 m-2" style="background: none;">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="m-2">
+                <h1>Timeistic</h1>
+                <p class="lead">Timeistic is a simplistic app that allows you to track your activities through out the day.</p>
+            </div>
+
+        </div>
+        <img class="col-md-6" src="~/Images/time_management.jpg" />
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-6">
-        <h2>Getting started?</h2>
-        <p>
-            Register an account here.
-        </p>
-        <button type="button" class="btn btn-light">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</button>
+
+@if (!Request.IsAuthenticated)
+{
+    <div class="row m-4">
+        <div class="col-md-6">
+            <h2>Getting started?</h2>
+            <p>
+                Register an account here.
+            </p>
+            <button type="button" class="btn btn-light">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</button>
+        </div>
+        <div class="col-md-6">
+            <h2>Already a user?</h2>
+            <p>Welcome back! You can login here.</p>
+            <button type="button" class="btn btn-light">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</button>
+        </div>
     </div>
-    <div class="col-md-6">
-        <h2>Already a user?</h2>
-        <p>Welcome back! You can login here.</p>
-        <button type="button" class="btn btn-light">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</button>
-    </div>
-</div>
+}

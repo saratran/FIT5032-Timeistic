@@ -253,6 +253,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\edit-icon.png" />
     <Content Include="Images\Timeistic-logo.png" />
+    <Content Include="Images\time_management.jpg" />
     <Content Include="Images\trash-icon.png" />
     <Content Include="Images\8262-200.png" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -558,7 +559,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
