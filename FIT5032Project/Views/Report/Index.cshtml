@@ -8,8 +8,13 @@
 <h2>Report</h2>
 
 <div class="card m-3">
-    <div id="totalTime" class="card-body">
+    <div class="card-body">
+        <div id="totalTime">
+        </div>
+        <div id="averageRating">
+        </div>
     </div>
+
 </div>
 <div id="chart-container" class="container">
     <div class="row my-auto">
@@ -80,6 +85,17 @@
                 return total;
             }
 
+            averageRating() {
+                let rated_items = this.items.filter(item => item.Rating != null);
+                @*console.log(rated_items)*@
+                let sum_rating = rated_items.reduce((total, item) => total + item.Rating, 0);
+                return {
+                    n: rated_items.length,
+                    average_rating: Number(sum_rating / rated_items.length).toFixed(2)
+                }
+                @*console.log(sum_rating)*@
+            }
+
 
         }
         function getDateFromAspNetFormat(date) {
@@ -97,6 +113,8 @@
         }
         let report = new Report(model);
         $('#totalTime').text("Total time spent: " + report.totalTime() + " hours");
+        let rating = report.averageRating();
+        $('#averageRating').text(`Average task rating: ${rating.average_rating} out of ${rating.n} tasks`);
 
         var myChart;
         var myPieChart;
