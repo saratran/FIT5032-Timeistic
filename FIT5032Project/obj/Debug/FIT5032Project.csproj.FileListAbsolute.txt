@@ -113,7 +113,6 @@ E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Pr
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.csproj.GenerateResource.cache
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.Migrations.itemlocation.resources
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.Migrations.location.resources
-E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.csprojAssemblyReference.cache
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\HtmlRenderer.dll
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\HtmlRenderer.PdfSharp.dll
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\PdfSharp.Charting.dll
@@ -124,3 +123,10 @@ E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Pr
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\PdfSharp.Charting.xml
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\de\PdfSharp.resources.dll
 E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\de\PdfSharp.Charting.resources.dll
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\obj\Debug\FIT5032Project.Migrations.itemrating.resources
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\System.Net.Http.Formatting.dll
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\System.Web.Http.dll
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\System.Web.Http.WebHost.dll
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\System.Net.Http.Formatting.xml
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\System.Web.Http.xml
+E:\Monash-Learning-Materials\2020-S2\FIT5032\New folder\FIT5032Project\FIT5032Project\bin\System.Web.Http.WebHost.xml

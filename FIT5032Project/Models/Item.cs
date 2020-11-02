@@ -21,6 +21,9 @@ namespace FIT5032Project.Models
         [Range(1, 5, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
         public int Priority { get; set; }
 
+        [Range(1, 5, ErrorMessage = "Value for {0} must be between {1} and {2}.")]
+        public int? Rating { get; set; }
+
         [Required]
         [DataType(DataType.Time)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh:mm tt}")]

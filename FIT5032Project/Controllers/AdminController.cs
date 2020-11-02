@@ -97,7 +97,7 @@ namespace FIT5032Project.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> SendEmail(SendEmailViewModel model, HttpPostedFileBase fileUploader)
+        public ActionResult SendEmail(SendEmailViewModel model, HttpPostedFileBase fileUploader)
         {
             if (ModelState.IsValid)
             {
