@@ -203,6 +203,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemApiController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -227,8 +228,13 @@
     <Compile Include="Migrations\202011020207051_item-rating.Designer.cs">
       <DependentUpon>202011020207051_item-rating.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011030854410_event.cs" />
+    <Compile Include="Migrations\202011030854410_event.Designer.cs">
+      <DependentUpon>202011030854410_event.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Location.cs" />
@@ -612,6 +618,11 @@
     <Content Include="Views\Report\Index.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Admin\Email.cshtml" />
+    <Content Include="Views\Events\Create.cshtml" />
+    <Content Include="Views\Events\Delete.cshtml" />
+    <Content Include="Views\Events\Details.cshtml" />
+    <Content Include="Views\Events\Edit.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -636,6 +647,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011020207051_item-rating.resx">
       <DependentUpon>202011020207051_item-rating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011030854410_event.resx">
+      <DependentUpon>202011030854410_event.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

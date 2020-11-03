@@ -1,0 +1,93 @@
+﻿@model IEnumerable<FIT5032Project.Models.Event>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<div id="calendar"></div>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div style="display: none">
+    <table class="table">
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+@section Styles{
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.css">
+}
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.2/main.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+    <script>
+        var events = [];
+
+        $(".events").each(function () {
+            var title = $(".title", this).text().trim();
+            var start = $(".start", this).text().trim();
+            var end = $(".end", this).text().trim();
+            var date = $(".date", this).text().trim();
+
+            // tell moment how to parse the input string
+            var momentObjStart = moment(date + start, 'DD-MM-YYYYLT');
+            var momentObjEnd = moment(date + end, 'DD-MM-YYYYLT');
+            console.log(date + start);
+            console.log(date + end);
+            console.log(momentObjEnd);
+            let duration = momentObjEnd.diff(momentObjStart, 'hours', true);
+            console.log(duration);
+            if (duration < 0) {
+                duration += 24;
+            }
+
+            // conversion
+            var dateTimeStart = momentObjStart.format('YYYY-MM-DDTHH:mm');
+
+            var event = {
+                allDay: false,
+                "title": title,
+                "start": dateTimeStart,
+                "end": momentObjStart.add(duration, 'hours').format('YYYY-MM-DDTHH:mm')
+            };
+            events.push(event);
+        });
+
+        console.log(events)
+        let calendarEl = document.getElementById("calendar");
+        let calendar = new FullCalendar.Calendar(calendarEl, {
+            allDaySlot: false,
+            initialView: 'timeGridWeek',
+            events: events
+        });
+
+        calendar.render();
+    </script>
+
+}

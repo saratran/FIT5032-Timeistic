@@ -32,5 +32,7 @@ namespace FIT5032Project.Models
         }
 
         public System.Data.Entity.DbSet<FIT5032Project.Models.Location> Locations { get; set; }
+
+        public System.Data.Entity.DbSet<FIT5032Project.Models.Event> Events { get; set; }
     }
 }
