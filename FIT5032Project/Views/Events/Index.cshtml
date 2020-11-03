@@ -5,27 +5,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Event Calendar</h2>
 <div id="calendar"></div>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <div style="display: none">
     <table class="table">
-
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
+            <tr class="events">
+                <td class="id">
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td class="title">
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
-                <td>
+                <td class="start">
                     @Html.DisplayFor(modelItem => item.StartTime)
                 </td>
-                <td>
+                <td class="end">
                     @Html.DisplayFor(modelItem => item.EndTime)
                 </td>
-                <td>
+                <td class="date">
                     @Html.DisplayFor(modelItem => item.Date)
                 </td>
                 <td>
@@ -48,8 +47,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
     <script>
         var events = [];
-
         $(".events").each(function () {
+            var id = $(".id", this).text().trim();
             var title = $(".title", this).text().trim();
             var start = $(".start", this).text().trim();
             var end = $(".end", this).text().trim();
@@ -74,7 +73,8 @@
                 allDay: false,
                 "title": title,
                 "start": dateTimeStart,
-                "end": momentObjStart.add(duration, 'hours').format('YYYY-MM-DDTHH:mm')
+                "end": momentObjStart.add(duration, 'hours').format('YYYY-MM-DDTHH:mm'),
+                "id": id
             };
             events.push(event);
         });
@@ -84,7 +84,15 @@
         let calendar = new FullCalendar.Calendar(calendarEl, {
             allDaySlot: false,
             initialView: 'timeGridWeek',
-            events: events
+            events: events,
+            dateClick: function (info) {
+                $(location).attr('href', "/Events/Create");
+            },
+            eventClick: function (info) {
+                console.log(info.event.id);
+                let id = encodeURIComponent(info.event.id);
+                $(location).attr('href', `/Events/Details/${id}`);
+            }
         });
 
         calendar.render();

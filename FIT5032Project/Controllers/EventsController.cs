@@ -180,7 +180,7 @@ namespace FIT5032Project.Controllers
                 e2End.AddDays(1);
             }
 
-            return OverlappingPeriods(e1Start, e1End, e2Start, e1Start);
+            return OverlappingPeriods(e1Start, e1End, e2Start, e2Start);
         }
     }
 }

@@ -28,7 +28,9 @@
                         {
                             <li class="nav-item">@Html.ActionLink("Tracker", "Index", "Tracker", null, new { @class = "nav-link" })</li>
                             <li class="nav-item">@Html.ActionLink("Calendar", "Index", "Calendar", null, new { @class = "nav-link" })</li>
+                            <li class="nav-item">@Html.ActionLink("Event", "Index", "Events", null, new { @class = "nav-link" })</li>
                             <li class="nav-item">@Html.ActionLink("Report", "Index", "Report", null, new { @class = "nav-link" })</li>
+
                         }
                         else if (User.IsInRole("Administrator"))
                         {
